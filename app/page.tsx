@@ -17,13 +17,13 @@ const generateMotivationalPhrase = async (word: string): Promise<string> => {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: `Bearer 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`,
+                Authorization: `Bearer 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`,
             },
             body: JSON.stringify({
                 model: 'text-davinci-003',
                 prompt: prompt,
                 temperature: 1,
-                max_tokens: 200,
+                max_tokens: 220,
                 top_p: 1,
             }),
         })
@@ -65,7 +65,7 @@ export default function Home() {
                             rows={2}
                             name='description'
                             id='description'
-                            className='mb-2 block w-full resize-none border-0  p-2 py-0 placeholder-gray-500 focus:outline-cyan-500 focus:ring-0 sm:text-sm'
+                            className='mb-2 block w-full resize-none border-0  p-2 py-1 placeholder-gray-500 focus:outline-cyan-500 focus:ring-0 sm:text-sm'
                             placeholder='Digite uma palavra...'
                             value={word}
                             onChange={(e) => setWord(e.target.value)}
