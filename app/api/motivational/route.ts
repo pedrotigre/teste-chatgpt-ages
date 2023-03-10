@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 
-type ParamsProps = { params: { word: string } };
-
-export async function POST(request: Request, { params }: ParamsProps) {
-    const prompt = `Give me a motivational phrase in portuguese for the word "${params.word}"`;
+export async function POST(request: Request) {
+    const { prompt } = await request.json();
 
     const res = await fetch('https://api.openai.com/v1/completions', {
         cache: 'no-store',
@@ -16,7 +14,7 @@ export async function POST(request: Request, { params }: ParamsProps) {
         body: JSON.stringify({
             model: 'text-davinci-003',
             prompt: prompt,
-            temperature: 1,
+            temperature: 0.7,
             max_tokens: 120,
             top_p: 1,
         }),

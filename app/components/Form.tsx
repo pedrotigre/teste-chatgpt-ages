@@ -3,18 +3,32 @@
 import { useState } from 'react';
 
 const generateMotivationalPhrase = async (word: string): Promise<string> => {
+    const prompt = `Give me a motivational phrase in portuguese for the word "${word}"`;
     try {
-        const response = fetch(`/api/motivational/${word}`, {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => {
+            controller.abort();
+        }, 60000);
+
+        const response = await fetch('/api/motivational', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-        })
-            .then((response) => response.json())
-            .then((data) => data.choices[0].text.trim());
+            signal: controller.signal,
+            body: JSON.stringify({ prompt }),
+        });
 
-        const phrase = await response;
+        clearTimeout(timeout);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch data from API.');
+        }
+
+        const data = await response.json();
+        const phrase = data.choices[0].text.trim();
+
         return phrase;
     } catch (error) {
         console.error('Erro: ', error);
