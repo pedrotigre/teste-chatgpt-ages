@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 
-const generateMotivationalPhrase = async (word: string): Promise<string> => {
+const generateMotivationalPhrase = async (
+    word: string,
+    customPrompt?: string
+): Promise<string> => {
     const prompt = `Give me a motivational phrase in portuguese for the word "${word}"`;
     try {
         const controller = new AbortController();
@@ -39,6 +42,10 @@ const generateMotivationalPhrase = async (word: string): Promise<string> => {
 export default function Form() {
     const [word, setWord] = useState('');
     const [phrase, setPhrase] = useState('');
+    const [editPrompt, setEditPrompt] = useState(false);
+    const [prompt, setPrompt] = useState(
+        `Give me a motivational phrase in portuguese for the word "${word}"`
+    );
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -54,28 +61,54 @@ export default function Form() {
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
                 <div className=' overflow-hidden rounded-lg bg-[#111828]  bg-opacity-80 px-3 py-5 shadow-xl backdrop-blur backdrop-filter'>
-                    <textarea
-                        rows={2}
-                        name='description'
-                        id='description'
-                        className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] bg-opacity-80 px-3 py-2 text-white placeholder-gray-400 focus:outline-1 focus:outline-slate-900 sm:text-sm'
-                        placeholder='Digite uma palavra...'
-                        onChange={(e) => setWord(e.target.value)}
-                    />
+                    {(editPrompt && (
+                        <textarea
+                            rows={2}
+                            name='description'
+                            id='description'
+                            className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
+                            placeholder='Em desenvolvimento...'
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                        />
+                    )) || (
+                        <textarea
+                            rows={2}
+                            name='description'
+                            id='description'
+                            className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] bg-opacity-80 px-3 py-2 text-white placeholder-gray-400 focus:outline-1 focus:outline-slate-900 sm:text-sm'
+                            placeholder='Digite uma palavra...'
+                            value={word}
+                            onChange={(e) => setWord(e.target.value)}
+                        />
+                    )}
 
                     <div className='flex items-center justify-between space-x-3 border-t border-[#242b3b] px-2 pt-4 sm:px-3'>
-                        <button
-                            className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                            type='submit'
-                        >
-                            Gerar frase
-                        </button>
-                        <button
-                            className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                            type='submit'
-                        >
-                            Editar prompt
-                        </button>
+                        {!editPrompt && (
+                            <button
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                type='submit'
+                            >
+                                Gerar frase
+                            </button>
+                        )}
+                        {(!editPrompt && (
+                            <button
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                type='button'
+                                onClick={() => setEditPrompt(!editPrompt)}
+                            >
+                                Editar prompt
+                            </button>
+                        )) || (
+                            <button
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                type='button'
+                                onClick={() => setEditPrompt(!editPrompt)}
+                            >
+                                Salvar
+                            </button>
+                        )}
                     </div>
                 </div>
             </form>
