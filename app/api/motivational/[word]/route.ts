@@ -17,7 +17,7 @@ export async function POST(request: Request, { params }: ParamsProps) {
             model: 'text-davinci-003',
             prompt: prompt,
             temperature: 1,
-            max_tokens: 220,
+            max_tokens: 120,
             top_p: 1,
         }),
     });

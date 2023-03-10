@@ -35,11 +35,11 @@ export default function Form() {
 
     return (
         <div className='flex flex-col gap-5'>
-            <div className='mx-auto mt-4 h-36 w-full rounded-lg bg-slate-100 p-2 text-center'>
+            <div className='mx-auto mt-12 flex h-36 w-full items-center justify-center rounded-lg bg-slate-100 p-2'>
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
-                <div className='overflow-hidden rounded-lg border border-gray-300 p-3  shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500'>
+                <div className='overflow-hidden rounded-lg border border-gray-300 bg-white p-3 shadow-sm focus-within:border-slate-500 focus-within:ring-1 focus-within:ring-slate-500'>
                     <h1 className='mb-3  text-lg font-medium text-gray-700'>
                         Gerador de frases motivacionais
                     </h1>
@@ -47,7 +47,7 @@ export default function Form() {
                         rows={2}
                         name='description'
                         id='description'
-                        className='mb-2 block w-full resize-none border-0  p-2 py-1 placeholder-gray-500 focus:outline-cyan-500 focus:ring-0 sm:text-sm'
+                        className='mb-2 block w-full resize-none border-0  p-2 py-1 placeholder-gray-500 focus:outline-slate-400 focus:ring-0 sm:text-sm'
                         placeholder='Digite uma palavra...'
                         value={word}
                         onChange={(e) => setWord(e.target.value)}
