@@ -35,7 +35,7 @@ export default function Form() {
 
     return (
         <div className='flex flex-col gap-5'>
-            <div className='mx-auto mt-12 flex h-36 w-full items-center justify-center rounded-lg bg-slate-100 p-2'>
+            <div className='mx-auto mt-12 flex h-36 w-full items-center justify-center rounded-lg bg-slate-100 p-2 text-center'>
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
