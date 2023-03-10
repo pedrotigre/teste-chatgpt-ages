@@ -56,7 +56,10 @@ export default function Form() {
 
     return (
         <div className='z-10 flex w-full max-w-lg flex-col gap-5'>
-            <div className='sm:mt mx-auto mt-12 flex h-36 w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center text-white shadow-xl xl:mt-48'>
+            <h1 className='mt-6 text-center text-xl font-semibold text-white opacity-60 shadow-xl'>
+                Gerador de frases motivacionais
+            </h1>
+            <div className='sm:mt mx-auto mt-6 flex h-36 w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center text-white shadow-xl xl:mt-48'>
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
@@ -67,8 +70,8 @@ export default function Form() {
                             name='description'
                             id='description'
                             className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
-                            placeholder='Em desenvolvimento...'
-                            value={prompt}
+                            placeholder='Digite o novo prompt...'
+                            value={'Em desenvolvimento...'}
                             onChange={(e) => setPrompt(e.target.value)}
                         />
                     )) || (
@@ -86,7 +89,7 @@ export default function Form() {
                     <div className='flex items-center justify-between space-x-3 border-t border-[#242b3b] px-2 pt-4 sm:px-3'>
                         {!editPrompt && (
                             <button
-                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-900 focus:ring-offset-2'
                                 type='submit'
                             >
                                 Gerar frase
@@ -94,7 +97,7 @@ export default function Form() {
                         )}
                         {(!editPrompt && (
                             <button
-                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-900 focus:ring-offset-2'
                                 type='button'
                                 onClick={() => setEditPrompt(!editPrompt)}
                             >
@@ -102,7 +105,7 @@ export default function Form() {
                             </button>
                         )) || (
                             <button
-                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                                className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-900 focus:ring-offset-2'
                                 type='button'
                                 onClick={() => setEditPrompt(!editPrompt)}
                             >
