@@ -12,6 +12,7 @@ export default function Home() {
                 fill
                 style={{ objectFit: 'cover' }}
             />
+            <div className={styles.overlay}></div>
         </main>
     );
 }
