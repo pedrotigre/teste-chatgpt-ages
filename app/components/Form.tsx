@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 const generateMotivationalPhrase = async (
     word: string,
-    customPrompt?: string
+    prompt: string
 ): Promise<string> => {
-    const prompt = `Give me a motivational phrase in portuguese for the word "${word}"`;
+    prompt = prompt.replace(/\*\*(.*?)\*\*/g, word);
+
     try {
         const controller = new AbortController();
         const timeout = setTimeout(() => {
@@ -44,13 +45,13 @@ export default function Form() {
     const [phrase, setPhrase] = useState('');
     const [editPrompt, setEditPrompt] = useState(false);
     const [prompt, setPrompt] = useState(
-        `Give me a motivational phrase in portuguese for the word "${word}"`
+        'Give me a motivational phrase in portuguese for the word **variavel**'
     );
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setPhrase('Carregando...');
-        const newPhrase = await generateMotivationalPhrase(word);
+        const newPhrase = await generateMotivationalPhrase(word, prompt);
         setPhrase(newPhrase);
     };
 
@@ -68,7 +69,7 @@ export default function Form() {
                             id='description'
                             className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
                             placeholder='Digite o novo prompt...'
-                            value={'Em desenvolvimento...'}
+                            value={prompt}
                             onChange={(e) => setPrompt(e.target.value)}
                         />
                     )) || (
