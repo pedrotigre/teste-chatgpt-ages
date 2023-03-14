@@ -57,7 +57,7 @@ export default function Form() {
 
     return (
         <div className='z-10 flex w-full max-w-lg flex-col gap-5'>
-            <div className='mx-auto mt-8 flex min-h-[9rem] w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center text-white shadow-xl xl:mt-48'>
+            <div className='mx-auto mt-4 flex min-h-[9rem] w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center text-white shadow-xl lg:mt-24'>
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
