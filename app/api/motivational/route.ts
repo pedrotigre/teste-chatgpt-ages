@@ -15,7 +15,9 @@ export async function POST(request: Request) {
             model: 'text-davinci-003',
             prompt: prompt,
             temperature: 0.7,
-            max_tokens: 250,
+            max_tokens: 200,
+            frequency_penalty: 0.5,
+            presence_penalty: 0.5,
             top_p: 1,
         }),
     });
