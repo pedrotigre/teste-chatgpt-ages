@@ -45,7 +45,7 @@ export default function Form() {
     const [phrase, setPhrase] = useState('');
     const [editPrompt, setEditPrompt] = useState(false);
     const [prompt, setPrompt] = useState(
-        'Give me a motivational phrase in portuguese for the word **variavel**'
+        'Gere uma frase motivacional para a palavra **variavel**'
     );
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -57,7 +57,7 @@ export default function Form() {
 
     return (
         <div className='z-10 flex w-full max-w-lg flex-col gap-5'>
-            <div className='mx-auto mt-4 flex min-h-[9rem] w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center text-white shadow-xl lg:mt-24'>
+            <div className='mx-auto  mt-4 flex min-h-[9rem] w-full items-center justify-center rounded-lg bg-[#111828] bg-opacity-80 p-2 text-center leading-relaxed text-white shadow-xl lg:mt-24'>
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ export default function Form() {
                             />
                             <p className='mb-4 text-white opacity-40'>
                                 Utilize <strong>**variavel**</strong> para
-                                representar a variavel.
+                                representar a variável.
                             </p>
                         </>
                     )) || (
