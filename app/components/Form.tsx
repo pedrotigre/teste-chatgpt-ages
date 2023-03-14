@@ -76,7 +76,7 @@ export default function Form() {
                                 value={prompt}
                                 onChange={(e) => setPrompt(e.target.value)}
                             />
-                            <p className='mb-4 text-white opacity-20'>
+                            <p className='mb-4 text-white opacity-30'>
                                 Utilize **variavel** para representar a
                                 variavel.
                             </p>
