@@ -61,17 +61,26 @@ export default function Form() {
                 {(phrase && <p>{phrase}</p>) || <p>...</p>}
             </div>
             <form className='mx-auto w-full' onSubmit={handleSubmit}>
-                <div className=' overflow-hidden rounded-lg bg-[#111828]  bg-opacity-80 px-3 py-5 shadow-xl backdrop-blur backdrop-filter'>
+                <div className='overflow-hidden rounded-lg bg-[#111828] bg-opacity-80 px-3 py-5 shadow-xl backdrop-blur backdrop-filter'>
                     {(editPrompt && (
-                        <textarea
-                            rows={2}
-                            name='description'
-                            id='description'
-                            className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
-                            placeholder='Digite o novo prompt...'
-                            value={prompt}
-                            onChange={(e) => setPrompt(e.target.value)}
-                        />
+                        <>
+                            <h2 className='mb-3 font-semibold text-white'>
+                                Editar prompt:
+                            </h2>
+                            <textarea
+                                rows={3}
+                                name='description'
+                                id='description'
+                                className='mb-3 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
+                                placeholder='Digite o novo prompt...'
+                                value={prompt}
+                                onChange={(e) => setPrompt(e.target.value)}
+                            />
+                            <p className='mb-4 pl-1 text-sm italic text-white opacity-40'>
+                                Utilize **variavel** para representar a
+                                variavel.
+                            </p>
+                        </>
                     )) || (
                         <textarea
                             rows={2}
