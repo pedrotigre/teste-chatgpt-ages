@@ -68,15 +68,15 @@ export default function Form() {
                                 Editar prompt:
                             </h2>
                             <textarea
-                                rows={3}
+                                rows={4}
                                 name='description'
                                 id='description'
-                                className='mb-3 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 sm:text-sm'
+                                className='mb-3 block w-full resize-none rounded-md border-0 bg-[#202938] px-3 py-2 text-white placeholder-gray-200 focus:placeholder-gray-500 focus:outline-1 focus:outline-slate-900 '
                                 placeholder='Digite o novo prompt...'
                                 value={prompt}
                                 onChange={(e) => setPrompt(e.target.value)}
                             />
-                            <p className='mb-4 pl-1 text-sm italic text-white opacity-40'>
+                            <p className='mb-4 text-white opacity-20'>
                                 Utilize **variavel** para representar a
                                 variavel.
                             </p>
@@ -86,7 +86,7 @@ export default function Form() {
                             rows={2}
                             name='description'
                             id='description'
-                            className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] bg-opacity-80 px-3 py-2 text-white placeholder-gray-400 focus:outline-1 focus:outline-slate-900 sm:text-sm'
+                            className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] bg-opacity-80 px-3 py-2 text-white placeholder-gray-400 focus:outline-1 focus:outline-slate-900 '
                             placeholder='Digite uma palavra...'
                             value={word}
                             onChange={(e) => setWord(e.target.value)}
