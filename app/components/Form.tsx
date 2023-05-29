@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 
-const generateMotivationalPhrase = async (word: string): Promise<any> => {
+function trimArray(array: string[]) {
+    return array.map((v) => v.trim());
+}
+
+const generateMotivationalPhrase = async (word: string[]): Promise<any> => {
     try {
         const response = await fetch(
             'https://focus-api-production.up.railway.app/frases',
@@ -12,7 +16,7 @@ const generateMotivationalPhrase = async (word: string): Promise<any> => {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ topic: word }),
+                body: JSON.stringify({ goals: word }),
                 mode: 'cors',
             }
         );
@@ -22,9 +26,10 @@ const generateMotivationalPhrase = async (word: string): Promise<any> => {
         }
 
         const data = await response.json();
-        const phrase = data.phrases;
-
-        return JSON.parse(phrase);
+        const phraseArray = data.phrases;
+        const phrases: any[] = [];
+        phraseArray.forEach((array: any) => phrases.push(...JSON.parse(array)));
+        return phrases;
     } catch (error) {
         console.error('Erro: ', error);
         return [
@@ -44,7 +49,9 @@ export default function Form() {
         event.preventDefault();
         // setPhrase('Carregando... Esse processo pode levar até 1 minuto.');
         setIsLoading(true);
-        const newPhrase = await generateMotivationalPhrase(word);
+        const newPhrase = await generateMotivationalPhrase(
+            trimArray(word.split(','))
+        );
         setIsLoading(false);
         setPhrase(newPhrase);
     };
@@ -67,7 +74,7 @@ export default function Form() {
                         name='description'
                         id='description'
                         className='mb-4 block w-full resize-none rounded-md border-0 bg-[#202938] bg-opacity-80 px-3 py-2 text-white placeholder-gray-400 focus:outline-1 focus:outline-slate-900 '
-                        placeholder='Digite um objetivo...'
+                        placeholder='Digite objetivos separados por vírgula.'
                         value={word}
                         onChange={(e) => setWord(e.target.value)}
                     />
@@ -77,7 +84,7 @@ export default function Form() {
                                 className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-900 focus:ring-offset-2'
                                 type='submit'
                             >
-                                Gerar frase
+                                Gerar frases
                             </button>
                         )}
                         {isLoading && (
@@ -85,7 +92,7 @@ export default function Form() {
                                 className='inline-flex items-center rounded-md border border-transparent bg-indigo-600 bg-opacity-80 px-4 py-2 text-sm font-medium text-white opacity-40 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-900 focus:ring-offset-2'
                                 disabled={true}
                             >
-                                Gerar frase
+                                Gerar frases
                             </button>
                         )}
                     </div>
