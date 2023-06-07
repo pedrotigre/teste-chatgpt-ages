@@ -26,10 +26,8 @@ const generateMotivationalPhrase = async (word: string[]): Promise<any> => {
         }
 
         const data = await response.json();
-        const phraseArray = data.phrases;
-        const phrases: any[] = [];
-        phraseArray.forEach((array: any) => phrases.push(...JSON.parse(array)));
-        return phrases;
+        const phrasesArray = data.phrases;
+        return phrasesArray;
     } catch (error) {
         console.error('Erro: ', error);
         return [
@@ -47,7 +45,6 @@ export default function Form() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // setPhrase('Carregando... Esse processo pode levar até 1 minuto.');
         setIsLoading(true);
         const newPhrase = await generateMotivationalPhrase(
             trimArray(word.split(','))
@@ -61,7 +58,7 @@ export default function Form() {
             <div className='mx-auto mt-4 flex min-h-[9rem] w-full flex-col items-center justify-center gap-4 rounded-lg bg-[#111828] bg-opacity-80 p-4 text-center text-white shadow-xl lg:mt-24'>
                 {!isLoading &&
                     phrase.map((v: any, index) => {
-                        return <p key={index}>{v.phrase}</p>;
+                        return <p key={index}>{v}</p>;
                     })}
                 {isLoading && (
                     <p>Carregando... Esse processo pode levar até 1 minuto.</p>
